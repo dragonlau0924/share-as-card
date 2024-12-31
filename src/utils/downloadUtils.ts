@@ -38,16 +38,18 @@ export const downloadAsImage = async (elementId: string, fileName: string): Prom
     const element = getTargetElement(elementId);
     await waitForImages(element);
 
+    const originalTransform = element.style.transform;
+    element.style.transform = 'scale(1)';
+
     const dataUrl = await htmlToImage.toPng(element, {
       quality: 1.0,
-      pixelRatio: 2,
+      pixelRatio: 3,
       cacheBust: true,
-      style: {
-        // Ensure proper rendering of box-shadow and other styles
-        transform: 'scale(1)',
-        'transform-origin': 'top left'
-      }
+      width: 1080,
+      height: 1439
     });
+
+    element.style.transform = originalTransform;
 
     createDownloadLink(dataUrl, fileName);
   } catch (error) {

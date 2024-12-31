@@ -226,24 +226,26 @@ export const CardEditor = () => {
         {/* Preview Panel */}
         <div className="bg-white p-6 rounded-lg shadow-md sticky top-8">
           <h2 className="text-2xl font-bold mb-6">预览</h2>
-          <div id="card-preview" className="transform scale-[0.4] origin-top-left">
-            <CardPreview
-              avatar={avatar}
-              title={title}
-              content={content}
-              authorName={authorName}
-              nameColor={nameColor}
-              frameColor={frameColor}
-              gradientStart={gradientStart}
-              gradientEnd={gradientEnd}
-              stars={stars}
-              forks={forks}
-              views={views}
-              date={date}
-              tags={tags}
-              titleFont={titleFont}
-              contentFont={contentFont}
-            />
+          <div className="overflow-hidden">
+            <div id="card-preview" className="transform scale-[0.4] origin-top-left">
+              <CardPreview
+                avatar={avatar}
+                title={title}
+                content={content}
+                authorName={authorName}
+                nameColor={nameColor}
+                frameColor={frameColor}
+                gradientStart={gradientStart}
+                gradientEnd={gradientEnd}
+                stars={stars}
+                forks={forks}
+                views={views}
+                date={date}
+                tags={tags}
+                titleFont={titleFont}
+                contentFont={contentFont}
+              />
+            </div>
           </div>
         </div>
       </div>
