@@ -7,10 +7,10 @@ import { downloadAsImage } from '../utils/downloadUtils';
 import { FontSelect } from './FontSelect';
 
 export const CardEditor = () => {
-  const [title, setTitle] = useState('DeepSeek-V3');
+  const [title, setTitle] = useState('标题');
   const [titleFont, setTitleFont] = useState('Nunito Black');
   const [contentFont, setContentFont] = useState('LXGWWenKai');
-  const [content, setContent] = useState('DeepSeek-V3是一个由deepseek-ai团队开发的开源项目...');
+  const [content, setContent] = useState('正文');
   const [avatar, setAvatar] = useState('');
   const [authorName, setAuthorName] = useState('Leo');
   const [nameColor, setNameColor] = useState('#4B5563');
@@ -20,12 +20,12 @@ export const CardEditor = () => {
   const [stars, setStars] = useState('6.4k');
   const [forks, setForks] = useState('398');
   const [views, setViews] = useState('6.4k');
-  const [date, setDate] = useState('2024/12/26');
-  const [tags, setTags] = useState(['DeepSeek-V3', '开源项目', '深度学习', '图像识别']);
+  const [date, setDate] = useState('2025/01/01');
+  const [tags, setTags] = useState(['学习', '思考', '创新', '构建', '营销']);
   const [newTag, setNewTag] = useState('');
-  const [showStars, setShowStars] = useState(true);
-  const [showForks, setShowForks] = useState(true);
-  const [showViews, setShowViews] = useState(true);
+  const [showStars, setShowStars] = useState(false);
+  const [showForks, setShowForks] = useState(false);
+  const [showViews, setShowViews] = useState(false);
   const [showDate, setShowDate] = useState(true);
   const [showTags, setShowTags] = useState(true);
 
