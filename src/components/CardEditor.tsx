@@ -8,11 +8,11 @@ import { FontSelect } from './FontSelect';
 
 export const CardEditor = () => {
   const [title, setTitle] = useState('DeepSeek-V3');
-  const [titleFont, setTitleFont] = useState('');
-  const [contentFont, setContentFont] = useState('');
+  const [titleFont, setTitleFont] = useState('Nunito Black');
+  const [contentFont, setContentFont] = useState('LXGWWenKai');
   const [content, setContent] = useState('DeepSeek-V3是一个由deepseek-ai团队开发的开源项目...');
   const [avatar, setAvatar] = useState('');
-  const [authorName, setAuthorName] = useState('deepseek-ai');
+  const [authorName, setAuthorName] = useState('Leo');
   const [nameColor, setNameColor] = useState('#4B5563');
   const [frameColor, setFrameColor] = useState('#E5E7EB');
   const [gradientStart, setGradientStart] = useState('#e0f2fe');
@@ -23,6 +23,11 @@ export const CardEditor = () => {
   const [date, setDate] = useState('2024/12/26');
   const [tags, setTags] = useState(['DeepSeek-V3', '开源项目', '深度学习', '图像识别']);
   const [newTag, setNewTag] = useState('');
+  const [showStars, setShowStars] = useState(true);
+  const [showForks, setShowForks] = useState(true);
+  const [showViews, setShowViews] = useState(true);
+  const [showDate, setShowDate] = useState(true);
+  const [showTags, setShowTags] = useState(true);
 
   const handleAvatarChange = useCallback((file: File) => {
     const reader = new FileReader();
@@ -132,85 +137,150 @@ export const CardEditor = () => {
           />
 
           {/* Stats */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                星标数
-              </label>
-              <input
-                type="text"
-                value={stars}
-                onChange={(e) => setStars(e.target.value)}
-                className="w-full p-2 border rounded-md"
-              />
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-medium text-gray-700">统计信息显示控制</h3>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                分叉数
+            <div className="grid grid-cols-2 gap-4">
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={showStars}
+                  onChange={(e) => setShowStars(e.target.checked)}
+                  className="rounded text-blue-600"
+                />
+                <span className="text-sm text-gray-700">显示星标数</span>
               </label>
-              <input
-                type="text"
-                value={forks}
-                onChange={(e) => setForks(e.target.value)}
-                className="w-full p-2 border rounded-md"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                查看数
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={showForks}
+                  onChange={(e) => setShowForks(e.target.checked)}
+                  className="rounded text-blue-600"
+                />
+                <span className="text-sm text-gray-700">显示分叉数</span>
               </label>
-              <input
-                type="text"
-                value={views}
-                onChange={(e) => setViews(e.target.value)}
-                className="w-full p-2 border rounded-md"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                日期
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={showViews}
+                  onChange={(e) => setShowViews(e.target.checked)}
+                  className="rounded text-blue-600"
+                />
+                <span className="text-sm text-gray-700">显示查看数</span>
               </label>
-              <input
-                type="text"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="w-full p-2 border rounded-md"
-              />
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={showDate}
+                  onChange={(e) => setShowDate(e.target.checked)}
+                  className="rounded text-blue-600"
+                />
+                <span className="text-sm text-gray-700">显示日期</span>
+              </label>
             </div>
           </div>
 
-          {/* Tags */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              标签
-            </label>
-            <input
-              type="text"
-              value={newTag}
-              onChange={(e) => setNewTag(e.target.value)}
-              onKeyPress={handleAddTag}
-              placeholder="输入标签后按回车添加"
-              className="w-full p-2 border rounded-md mb-2"
-            />
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-sm flex items-center"
-                >
-                  {tag}
-                  <button
-                    onClick={() => setTags(tags.filter((_, i) => i !== index))}
-                    className="ml-2 text-blue-400 hover:text-blue-600"
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
+          <div className="grid grid-cols-2 gap-4">
+            {showStars && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  星标数
+                </label>
+                <input
+                  type="text"
+                  value={stars}
+                  onChange={(e) => setStars(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+            )}
+
+            {showForks && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  分叉数
+                </label>
+                <input
+                  type="text"
+                  value={forks}
+                  onChange={(e) => setForks(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+            )}
+
+            {showViews && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  查看数
+                </label>
+                <input
+                  type="text"
+                  value={views}
+                  onChange={(e) => setViews(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+            )}
+
+            {showDate && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  日期
+                </label>
+                <input
+                  type="text"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Tags Control */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-medium text-gray-700">标签显示控制</h3>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={showTags}
+                  onChange={(e) => setShowTags(e.target.checked)}
+                  className="rounded text-blue-600"
+                />
+                <span className="text-sm text-gray-700">显示标签</span>
+              </label>
             </div>
+            {showTags && (
+              <div>
+                <input
+                  type="text"
+                  value={newTag}
+                  onChange={(e) => setNewTag(e.target.value)}
+                  onKeyPress={handleAddTag}
+                  placeholder="输入标签后按回车添加"
+                  className="w-full p-2 border rounded-md mb-2"
+                />
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-sm flex items-center"
+                    >
+                      {tag}
+                      <button
+                        onClick={() => setTags(tags.filter((_, i) => i !== index))}
+                        className="ml-2 text-blue-400 hover:text-blue-600"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Download Button */}
@@ -244,6 +314,11 @@ export const CardEditor = () => {
                 tags={tags}
                 titleFont={titleFont}
                 contentFont={contentFont}
+                showStars={showStars}
+                showForks={showForks}
+                showViews={showViews}
+                showDate={showDate}
+                showTags={showTags}
               />
             </div>
           </div>

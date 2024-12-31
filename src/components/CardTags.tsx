@@ -6,11 +6,11 @@ interface CardTagsProps {
 
 export const CardTags: React.FC<CardTagsProps> = ({ tags }) => {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-3 justify-center">
       {tags.map((tag, index) => (
         <span
           key={index}
-          className="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-medium"
+          className="px-6 py-2 rounded-full bg-blue-50 text-blue-600 text-lg font-medium"
         >
           {tag}
         </span>
